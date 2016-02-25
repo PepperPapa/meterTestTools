@@ -11,19 +11,26 @@
     }
     header {
       height: 60px;
-      /*background-color: #90c386;*/
-      text-align: center;
+      /*background-color: lightgray;*/
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-around;
+      align-items: center;
+    }
+    #items {
+      width: 380px;
+      font-size: 2em;
+      border-radius: 5px;
     }
     #run {
-      width: 280px;
-      height: 100%;
+      width: 220px;
       font-size: 2em;
       border-radius: 10px;
     }
     #container {
       display: flex;
       width: 100%;
-      height: 100%;
+      /*height: 100%;*/
       text-align: center;
     }
     #cmd-in, #cmd-out {
@@ -43,11 +50,15 @@
 </head>
 <body>
   <header id="header">
+    <select name="" id="items">
+      <option value="">帧格式检查</option>
+      <option value="">待添加</option>
+    </select>
     <input type="button" id="run" value="点击开始检查">
   </header>
+  <hr>
   <div id="container">
     <div id="cmd-in">
-
       <label for="in">输入信息：</label>
       <textarea name="input_info" id="in"></textarea>
     </div>
