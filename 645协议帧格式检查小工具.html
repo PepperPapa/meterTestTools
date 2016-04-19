@@ -54,13 +54,18 @@
       <option value="">帧格式检查</option>
       <option value="">待添加</option>
     </select>
-    <input type="button" id="run" value="点击开始检查">
+    <input type="button" id="run" value="开始检查">
   </header>
   <hr>
   <div id="container">
     <div id="cmd-in">
       <label for="in">输入信息：</label>
-      <textarea name="input_info" id="in"></textarea>
+      <textarea name="input_info" id="in" placeholder="直接将310工具输出的帧信息全部copy到这里，然后点击开始检查即可！
+检查内容：
+  1.起始、结束符是否正确。
+  2.校验和是否正确。
+  3.如包含无请求数据项会列出共有多少项。
+  "></textarea>
     </div>
     <div id="cmd-out">
       <label for="out">检查结果：</label>
