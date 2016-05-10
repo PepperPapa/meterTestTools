@@ -111,7 +111,8 @@
     run.addEventListener('click', function() {
       var data = cmdin.value.split('\n');
       var new_data = [];
-      var rule = /收：|发：/g;
+      // 310抄读信息中使用的是中文"："号，也存在其他如navigator使用英文":" 
+      var rule = /收[：:]|发[：:]/g;
       cmdout.value = "";
 
       for (var i in data) {
