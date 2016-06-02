@@ -14,6 +14,7 @@ run.onclick = function() {
     all_time = all_time.slice(0, -1);   // 去除最后一项空值
 
     var result = "";
+    var error_num = 0; // 不合格项目数清零
 
     // 执行检查 YYMMDDhhmm、YYMMDDhhmmss
     // 1.长度为 10
@@ -57,11 +58,13 @@ run.onclick = function() {
 
       if (error) {
         result += all_time[i] + " --检查不合格！\n";
+        error_num += 1;
       } else {
         result += all_time[i] + " --OK\n";
       }
     }
     cmdout.value = result;
-    cmdout.value += "共检查数据项目数为：" + all_time.length;
+    cmdout.value += "共检查数据项目数为：" + all_time.length + "\n";
+    cmdout.value += "不合格项目数为：" + error_num;
   }
 };
