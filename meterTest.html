@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>电表测试工具合集</title>
+  <style>
+    html, body {
+      margin: 0 0;
+      width: 100%;
+      height: 100%;
+    }
+    header {
+      height: 60px;
+      /*background-color: lightgray;*/
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-around;
+      align-items: center;
+    }
+    #items {
+      width: 380px;
+      font-size: 2em;
+      border-radius: 5px;
+    }
+    #run {
+      width: 220px;
+      font-size: 2em;
+      border-radius: 10px;
+    }
+    #container {
+      display: flex;
+      width: 100%;
+      /*height: 100%;*/
+      text-align: center;
+    }
+    #cmd-in, #cmd-out {
+      width: 50%;
+    }
+    #cmd-in {
+      border-right: solid 1px gray;
+    }
+    #out {
+      background-color: lightgray;
+    }
+    #in, #out {
+      width: 90%;
+      height: 600px;
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <select name="test-items" id="items">
+      <option value="protocol645" selected>帧格式符合性检查</option>
+      <option value="time" >时间格式检查</option>
+    </select>
+    <input type="button" id="run" value="开始检查">
+  </header>
+  <hr>
+  <div id="container">
+    <div id="cmd-in">
+      <label for="in">输入信息：</label>
+      <textarea name="input_info" id="in" placeholder=""></textarea>
+    </div>
+    <div id="cmd-out">
+      <label for="out">检查结果：</label>
+      <textarea name="output_info" readonly="true" id="out"></textarea>
+    </div>
+  </div>
+  <script>
+    // placeholder提示信息，不同的测试项目将显示相应的提示信息
+    var placeholder = {}
+    placeholder.protocol645 = "直接将310工具输出的帧信息全部copy到这里，然后点击开始检查即可！\n" +
+    "检查内容：\n" +
+    "1.起始、结束符是否正确。\n" +
+    "2.校验和是否正确。\n" +
+    "3.如包含无请求数据项会列出共有多少项。\n";
+    placeholder.time = "检查310抄读出的时间数据YYMMDDhhmm是否符合格式要求\n" +
+    "主要用于需量发生时间、冻结时间等包含大量时间数据格式的检查\n" +
+    "测试方法：\n" +
+    "1.使用310抄读相应的数据项，到处至excel，纵向排列\n" +
+    "2.使用excel筛选出所有包含时间的数据YYMMDDhhmm\n" +
+    "3.copy至检测工具的输入区域内\n" +
+    "4.测试项目选择时间格式检查，点击运行";
+
+    var input_area = document.getElementById("in");
+    var test_options = document.getElementById("items");
+    var cmdin = document.getElementById("in");
+    var cmdout = document.getElementById("out");
+    var run = document.getElementById("run");
+
+    input_area.placeholder = placeholder[test_options.value];
+    test_options.addEventListener("change", function() {
+      input_area.placeholder = placeholder[this.value];
+    });
+    // TODO: zx 加载文档后模拟触发change事件
+  </script>
+  <script src="js/protocol645.js"></script>
+  <script src="js/checktime.js"></script>
+</body>
+</html>
